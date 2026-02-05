@@ -1,0 +1,174 @@
+{
+  "meta": { "version": "1.0.0", "title": "Career Direction Navigator", "generatedAt": "2026-02-04" },
+  "paths": [
+    { "id": "thrive", "label": "Thrive in Place", "short": "Get even better at what you do in role. Strengthen your skills and make a bigger impact right where you are." },
+    { "id": "levelUp", "label": "Level Up", "short": "Be ready for the next level as a leader or subject matter expert." },
+    { "id": "moveAcross", "label": "Move Across", "short": "Try a different role at the same level—learn new things and broaden perspective." },
+    { "id": "expandView", "label": "Expand Your View", "short": "Try something new through a short-term project to clarify what’s next." },
+    { "id": "reset", "label": "Reset Your Course", "short": "Pause to refocus, build skills, and recalibrate your next move." }
+  ],
+  "flow": {
+    "routingRules": [
+      { "when": { "phase": "diagnosticComplete", "confidenceBand": "early" }, "then": { "primaryPath": "expandView", "secondaryPath": "moveAcross" } },
+      { "when": { "phase": "diagnosticComplete", "dominantSignal": "recalibration" }, "then": { "primaryPath": "reset", "secondaryPath": "expandView" } }
+    ]
+  },
+  "profile": {
+    "enabled": true,
+    "fields": [
+      { "id": "function", "label": "Your function (optional)", "type": "select", "options": ["Operations","Engineering","Commercial","Finance","IT / Digital","HR","HSE","Legal","Other"] },
+      { "id": "levelBand", "label": "Your level band (optional)", "type": "select", "options": ["Early Career","Mid Career","Senior IC","People Leader","Senior Leader"] },
+      { "id": "reason", "label": "Main reason you're doing this today (optional)", "type": "select", "options": ["Clarity","Growth","New opportunity","Manager conversation","Curiosity","Reset"] }
+    ]
+  },
+  "diagnostic": {
+    "confidence": { "bands": [ { "id": "strong", "minDelta": 6 }, { "id": "emerging", "minDelta": 3 }, { "id": "early", "minDelta": 0 } ] },
+    "questions": [
+      {
+        "id": "D1",
+        "screenTitle": "What kind of progress matters most right now?",
+        "prompt": "When you think about the next year, which kind of progress would feel most meaningful?",
+        "type": "single",
+        "options": [
+          { "id": "D1_A", "label": "Greater impact in the role I already know well", "signals": { "depth": 2 }, "pathScore": { "thrive": 4, "levelUp": 1, "moveAcross": 0, "expandView": 1, "reset": 0 } },
+          { "id": "D1_B", "label": "Bigger decisions, visibility, or responsibility", "signals": { "scope": 2 }, "pathScore": { "thrive": 0, "levelUp": 4, "moveAcross": 1, "expandView": 1, "reset": 0 } },
+          { "id": "D1_C", "label": "Learning how another part of the company works", "signals": { "breadth": 2 }, "pathScore": { "thrive": 0, "levelUp": 1, "moveAcross": 4, "expandView": 3, "reset": 0 } },
+          { "id": "D1_D", "label": "Pausing to rebuild skills or energy before the next move", "signals": { "recalibration": 2 }, "pathScore": { "thrive": 0, "levelUp": 0, "moveAcross": 0, "expandView": 1, "reset": 5 } }
+        ]
+      },
+      {
+        "id": "D2",
+        "screenTitle": "What’s most true today?",
+        "prompt": "Which statement feels most true right now?",
+        "type": "single",
+        "options": [
+          { "id": "D2_A", "label": "I’m still growing fast where I am — there’s more runway here.", "signals": { "depth": 2 }, "pathScore": { "thrive": 4, "levelUp": 1, "moveAcross": 0, "expandView": 1, "reset": 0 } },
+          { "id": "D2_B", "label": "I’m outgrowing the scope, not the company.", "signals": { "scope": 2 }, "pathScore": { "thrive": 0, "levelUp": 5, "moveAcross": 1, "expandView": 1, "reset": 0 } },
+          { "id": "D2_C", "label": "I understand my area well, but want broader perspective.", "signals": { "breadth": 2 }, "pathScore": { "thrive": 0, "levelUp": 1, "moveAcross": 4, "expandView": 3, "reset": 0 } },
+          { "id": "D2_D", "label": "I’m not sure what’s next — and that uncertainty is real.", "signals": { "recalibration": 1 }, "pathScore": { "thrive": 0, "levelUp": 0, "moveAcross": 1, "expandView": 4, "reset": 2 } }
+        ]
+      }
+    ]
+  },
+  "refinement": {
+    "questionSets": {
+      "levelUp": [
+        {
+          "id": "R_LU_1",
+          "screenTitle": "Define your “next level”",
+          "prompt": "When you picture the next level, what excites you most?",
+          "type": "single",
+          "options": [
+            { "id": "R_LU_1A", "label": "Leading people directly", "sets": { "versionOfPath.levelUpType": "peopleLeader" } },
+            { "id": "R_LU_1B", "label": "Owning bigger decisions and outcomes (expanded scope)", "sets": { "versionOfPath.levelUpType": "scopeOwner" } },
+            { "id": "R_LU_1C", "label": "Representing the work more visibly (influence + visibility)", "sets": { "versionOfPath.levelUpType": "visibilityInfluence" } },
+            { "id": "R_LU_1D", "label": "Deepening expertise (subject matter expert)", "sets": { "versionOfPath.levelUpType": "subjectMatterExpert" } }
+          ]
+        }
+      ],
+      "thrive": [],
+      "moveAcross": [],
+      "expandView": [],
+      "reset": []
+    }
+  },
+  "focusStatement": {
+    "builder": {
+      "defaultTemplates": {
+        "levelUp": "Right now, I’m aiming to Level Up by {levelUpDescriptor}, and I want to prove readiness through {experiment1}.",
+        "thrive": "Right now, I’m focused on Thriving in Place by strengthening {thriveDescriptor} to increase impact in my current role.",
+        "moveAcross": "Right now, I’m exploring a Move Across to gain {acrossDescriptor} and broaden my perspective.",
+        "expandView": "Right now, I’m Expanding My View to clarify what’s next.",
+        "reset": "Right now, I’m Resetting My Course to rebuild {resetDescriptor} and set myself up for a sustainable next step."
+      },
+      "descriptorMaps": {
+        "levelUp": { "byLevelUpType": {
+          "peopleLeader": "my people leadership (leading through others)",
+          "scopeOwner": "my scope and ownership of outcomes",
+          "visibilityInfluence": "my influence and visibility across stakeholders",
+          "subjectMatterExpert": "my expertise and impact as a subject matter expert"
+        } },
+        "thrive": { "byThriveFocus": {} },
+        "moveAcross": { "byAcrossPurpose": {} },
+        "expandView": { "byExploreMode": {} },
+        "reset": { "byResetDriver": {
+          "burnout": "my energy and sustainability",
+          "skillGap": "skills and confidence",
+          "mismatch": "fit and clarity",
+          "lifeChange": "capacity and priorities"
+        } }
+      }
+    }
+  },
+  "experiments": {
+    "library": [
+      { "id": "E_LU_1", "path": "levelUp", "label": "Lead a cross-functional initiative with clear outcomes", "timeframeDays": 60 },
+      { "id": "E_LU_2", "path": "levelUp", "label": "Own a decision forum or weekly review", "timeframeDays": 45 },
+      { "id": "E_TH_1", "path": "thrive", "label": "Improve the hardest recurring problem in your role measurably", "timeframeDays": 60 },
+      { "id": "E_MA_1", "path": "moveAcross", "label": "Shadow a target role for 2–3 sessions and document learnings", "timeframeDays": 30 },
+      { "id": "E_EX_1", "path": "expandView", "label": "Take a short-term project that exposes you to a new team", "timeframeDays": 45 },
+      { "id": "E_RE_1", "path": "reset", "label": "Build a 4-week learning plan with manager support", "timeframeDays": 28 }
+    ],
+    "selectionRules": {
+      "defaultPickCount": 2,
+      "maxPickCount": 3,
+      "suggestionsByPath": {
+        "levelUp": ["E_LU_1", "E_LU_2"],
+        "thrive": ["E_TH_1"],
+        "moveAcross": ["E_MA_1"],
+        "expandView": ["E_EX_1"],
+        "reset": ["E_RE_1"]
+      }
+    }
+  },
+  "summaryLogic": {
+    "whyEvidence": {
+      "maxBullets": 3,
+      "templates": {
+        "depth": "You’re motivated by getting stronger in your current lane and increasing impact through mastery.",
+        "scope": "You’re pulled toward bigger ownership, bigger decisions, and broader responsibility.",
+        "breadth": "You’re pulled toward learning new parts of the business and expanding perspective.",
+        "recalibration": "You’re signaling a need to rebuild capacity, clarity, or skills before accelerating."
+      }
+    },
+    "intentTranslationRules": [
+      {
+        "when": { "primaryPath": "levelUp", "versionOfPath.levelUpType": "peopleLeader" },
+        "then": {
+          "intentTranslation": "Wants to step into people leadership—growing impact through others, not just personal execution.",
+          "coachingFocus": [
+            "Give a real leadership rep: leading through others (delegation + feedback + follow-through).",
+            "Pressure-test comfort with accountability conversations, not just coaching."
+          ],
+          "leaderAsk": "Give me a safe but real leadership rep: leading through others with clear outcomes and a feedback loop.",
+          "pressureTestQuestion": "Which part of people leadership are you most willing to do even when it’s uncomfortable: feedback, accountability, or development?",
+          "successLooksLike": [
+            "They delegate clearly and follow through without rescuing",
+            "They run 1:1s with clarity (goals, feedback, next steps)",
+            "Stakeholders experience them as steady, accountable, and fair"
+          ],
+          "checkpointDays": 60,
+          "watchOuts": [
+            "Don’t equate ‘level up’ with title alone—ensure scope and leadership reps exist first."
+          ]
+        }
+      }
+    ],
+    "fallbackIntentTranslation": {
+      "intentTranslation": "Wants progress and clarity; answers show mixed signals, so the focus is on structured next steps that create evidence.",
+      "coachingFocus": [
+        "Treat this as a 30–60 day discovery sprint with a clear learning question."
+      ],
+      "leaderAsk": "Help me pick one experiment that creates clear evidence about what direction fits.",
+      "pressureTestQuestion": "If we had to choose one experiment that would teach us the most in 30–60 days, what would it be—and what would we learn from it?",
+      "successLooksLike": [
+        "They complete one experiment and capture learnings"
+      ],
+      "checkpointDays": 45,
+      "watchOuts": ["Don’t force certainty too early—create evidence first."]
+    }
+  },
+  "templates": {
+    "uiStrings": { "confidenceLabels": { "strong": "Strong signal", "emerging": "Emerging signal", "early": "Early signal" } }
+  }
+}
