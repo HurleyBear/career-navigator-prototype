@@ -1,28 +1,107 @@
 {
-  "meta": { "version": "1.0.0", "title": "Career Direction Navigator", "generatedAt": "2026-02-04" },
+  "meta": {
+    "version": "1.1.0",
+    "title": "Career Direction Navigator",
+    "generatedAt": "2026-02-04",
+    "notes": "Coaching-plan fields completed for every path."
+  },
+
   "paths": [
-    { "id": "thrive", "label": "Thrive in Place", "short": "Get even better at what you do in role. Strengthen your skills and make a bigger impact right where you are." },
-    { "id": "levelUp", "label": "Level Up", "short": "Be ready for the next level as a leader or subject matter expert." },
-    { "id": "moveAcross", "label": "Move Across", "short": "Try a different role at the same level—learn new things and broaden perspective." },
-    { "id": "expandView", "label": "Expand Your View", "short": "Try something new through a short-term project to clarify what’s next." },
-    { "id": "reset", "label": "Reset Your Course", "short": "Pause to refocus, build skills, and recalibrate your next move." }
+    {
+      "id": "thrive",
+      "label": "Thrive in Place",
+      "short": "Get even better at what you do in role. Strengthen your skills and make a bigger impact right where you are."
+    },
+    {
+      "id": "levelUp",
+      "label": "Level Up",
+      "short": "Be ready for the next level as a leader or subject matter expert."
+    },
+    {
+      "id": "moveAcross",
+      "label": "Move Across",
+      "short": "Try a different role at the same level—learn new things and broaden perspective."
+    },
+    {
+      "id": "expandView",
+      "label": "Expand Your View",
+      "short": "Try something new through a short-term project to clarify what’s next."
+    },
+    {
+      "id": "reset",
+      "label": "Reset Your Course",
+      "short": "Pause to refocus, build skills, and recalibrate your next move."
+    }
   ],
+
   "flow": {
     "routingRules": [
-      { "when": { "phase": "diagnosticComplete", "confidenceBand": "early" }, "then": { "primaryPath": "expandView", "secondaryPath": "moveAcross" } },
-      { "when": { "phase": "diagnosticComplete", "dominantSignal": "recalibration" }, "then": { "primaryPath": "reset", "secondaryPath": "expandView" } }
+      {
+        "when": { "phase": "diagnosticComplete", "confidenceBand": "early" },
+        "then": { "primaryPath": "expandView", "secondaryPath": "moveAcross" }
+      },
+      {
+        "when": { "phase": "diagnosticComplete", "dominantSignal": "recalibration" },
+        "then": { "primaryPath": "reset", "secondaryPath": "expandView" }
+      }
     ]
   },
+
   "profile": {
     "enabled": true,
     "fields": [
-      { "id": "function", "label": "Your function (optional)", "type": "select", "options": ["Operations","Engineering","Commercial","Finance","IT / Digital","HR","HSE","Legal","Other"] },
-      { "id": "levelBand", "label": "Your level band (optional)", "type": "select", "options": ["Early Career","Mid Career","Senior IC","People Leader","Senior Leader"] },
-      { "id": "reason", "label": "Main reason you're doing this today (optional)", "type": "select", "options": ["Clarity","Growth","New opportunity","Manager conversation","Curiosity","Reset"] }
+      {
+        "id": "function",
+        "label": "Your function (optional)",
+        "type": "select",
+        "options": [
+          "Operations",
+          "Engineering",
+          "Commercial",
+          "Finance",
+          "IT / Digital",
+          "HR",
+          "HSE",
+          "Legal",
+          "Other"
+        ]
+      },
+      {
+        "id": "levelBand",
+        "label": "Your level band (optional)",
+        "type": "select",
+        "options": [
+          "Early Career",
+          "Mid Career",
+          "Senior IC",
+          "People Leader",
+          "Senior Leader"
+        ]
+      },
+      {
+        "id": "reason",
+        "label": "Main reason you're doing this today (optional)",
+        "type": "select",
+        "options": [
+          "Clarity",
+          "Growth",
+          "New opportunity",
+          "Manager conversation",
+          "Curiosity",
+          "Reset"
+        ]
+      }
     ]
   },
+
   "diagnostic": {
-    "confidence": { "bands": [ { "id": "strong", "minDelta": 6 }, { "id": "emerging", "minDelta": 3 }, { "id": "early", "minDelta": 0 } ] },
+    "confidence": {
+      "bands": [
+        { "id": "strong", "minDelta": 6 },
+        { "id": "emerging", "minDelta": 3 },
+        { "id": "early", "minDelta": 0 }
+      ]
+    },
     "questions": [
       {
         "id": "D1",
@@ -30,10 +109,30 @@
         "prompt": "When you think about the next year, which kind of progress would feel most meaningful?",
         "type": "single",
         "options": [
-          { "id": "D1_A", "label": "Greater impact in the role I already know well", "signals": { "depth": 2 }, "pathScore": { "thrive": 4, "levelUp": 1, "moveAcross": 0, "expandView": 1, "reset": 0 } },
-          { "id": "D1_B", "label": "Bigger decisions, visibility, or responsibility", "signals": { "scope": 2 }, "pathScore": { "thrive": 0, "levelUp": 4, "moveAcross": 1, "expandView": 1, "reset": 0 } },
-          { "id": "D1_C", "label": "Learning how another part of the company works", "signals": { "breadth": 2 }, "pathScore": { "thrive": 0, "levelUp": 1, "moveAcross": 4, "expandView": 3, "reset": 0 } },
-          { "id": "D1_D", "label": "Pausing to rebuild skills or energy before the next move", "signals": { "recalibration": 2 }, "pathScore": { "thrive": 0, "levelUp": 0, "moveAcross": 0, "expandView": 1, "reset": 5 } }
+          {
+            "id": "D1_A",
+            "label": "Greater impact in the role I already know well",
+            "signals": { "depth": 2 },
+            "pathScore": { "thrive": 4, "levelUp": 1, "moveAcross": 0, "expandView": 1, "reset": 0 }
+          },
+          {
+            "id": "D1_B",
+            "label": "Bigger decisions, visibility, or responsibility",
+            "signals": { "scope": 2 },
+            "pathScore": { "thrive": 0, "levelUp": 4, "moveAcross": 1, "expandView": 1, "reset": 0 }
+          },
+          {
+            "id": "D1_C",
+            "label": "Learning how another part of the company works",
+            "signals": { "breadth": 2 },
+            "pathScore": { "thrive": 0, "levelUp": 1, "moveAcross": 4, "expandView": 3, "reset": 0 }
+          },
+          {
+            "id": "D1_D",
+            "label": "Pausing to rebuild skills or energy before the next move",
+            "signals": { "recalibration": 2 },
+            "pathScore": { "thrive": 0, "levelUp": 0, "moveAcross": 0, "expandView": 1, "reset": 5 }
+          }
         ]
       },
       {
@@ -42,14 +141,35 @@
         "prompt": "Which statement feels most true right now?",
         "type": "single",
         "options": [
-          { "id": "D2_A", "label": "I’m still growing fast where I am — there’s more runway here.", "signals": { "depth": 2 }, "pathScore": { "thrive": 4, "levelUp": 1, "moveAcross": 0, "expandView": 1, "reset": 0 } },
-          { "id": "D2_B", "label": "I’m outgrowing the scope, not the company.", "signals": { "scope": 2 }, "pathScore": { "thrive": 0, "levelUp": 5, "moveAcross": 1, "expandView": 1, "reset": 0 } },
-          { "id": "D2_C", "label": "I understand my area well, but want broader perspective.", "signals": { "breadth": 2 }, "pathScore": { "thrive": 0, "levelUp": 1, "moveAcross": 4, "expandView": 3, "reset": 0 } },
-          { "id": "D2_D", "label": "I’m not sure what’s next — and that uncertainty is real.", "signals": { "recalibration": 1 }, "pathScore": { "thrive": 0, "levelUp": 0, "moveAcross": 1, "expandView": 4, "reset": 2 } }
+          {
+            "id": "D2_A",
+            "label": "I’m still growing fast where I am — there’s more runway here.",
+            "signals": { "depth": 2 },
+            "pathScore": { "thrive": 4, "levelUp": 1, "moveAcross": 0, "expandView": 1, "reset": 0 }
+          },
+          {
+            "id": "D2_B",
+            "label": "I’m outgrowing the scope, not the company.",
+            "signals": { "scope": 2 },
+            "pathScore": { "thrive": 0, "levelUp": 5, "moveAcross": 1, "expandView": 1, "reset": 0 }
+          },
+          {
+            "id": "D2_C",
+            "label": "I understand my area well, but want broader perspective.",
+            "signals": { "breadth": 2 },
+            "pathScore": { "thrive": 0, "levelUp": 1, "moveAcross": 4, "expandView": 3, "reset": 0 }
+          },
+          {
+            "id": "D2_D",
+            "label": "I’m not sure what’s next — and that uncertainty is real.",
+            "signals": { "recalibration": 1 },
+            "pathScore": { "thrive": 0, "levelUp": 0, "moveAcross": 1, "expandView": 4, "reset": 2 }
+          }
         ]
       }
     ]
   },
+
   "refinement": {
     "questionSets": {
       "levelUp": [
@@ -66,61 +186,150 @@
           ]
         }
       ],
-      "thrive": [],
-      "moveAcross": [],
-      "expandView": [],
-      "reset": []
+      "thrive": [
+        {
+          "id": "R_TH_1",
+          "screenTitle": "What kind of growth in place?",
+          "prompt": "If you stay in your role, what kind of stretch would feel real (not just more work)?",
+          "type": "single",
+          "options": [
+            { "id": "R_TH_1A", "label": "More complexity (harder problems)", "sets": { "versionOfPath.thriveFocus": "complexity" } },
+            { "id": "R_TH_1B", "label": "More ownership (bigger outcomes)", "sets": { "versionOfPath.thriveFocus": "ownership" } },
+            { "id": "R_TH_1C", "label": "More influence (across stakeholders)", "sets": { "versionOfPath.thriveFocus": "influence" } },
+            { "id": "R_TH_1D", "label": "More mentoring (develop others)", "sets": { "versionOfPath.thriveFocus": "mentoring" } }
+          ]
+        }
+      ],
+      "moveAcross": [
+        {
+          "id": "R_MA_1",
+          "screenTitle": "Purpose of moving across",
+          "prompt": "What are you hoping to gain by moving across?",
+          "type": "single",
+          "options": [
+            { "id": "R_MA_1A", "label": "New skills", "sets": { "versionOfPath.acrossPurpose": "newSkills" } },
+            { "id": "R_MA_1B", "label": "Broader perspective", "sets": { "versionOfPath.acrossPurpose": "broaderPerspective" } },
+            { "id": "R_MA_1C", "label": "Better fit", "sets": { "versionOfPath.acrossPurpose": "betterFit" } },
+            { "id": "R_MA_1D", "label": "Future optionality", "sets": { "versionOfPath.acrossPurpose": "optionality" } }
+          ]
+        }
+      ],
+      "expandView": [
+        {
+          "id": "R_EX_1",
+          "screenTitle": "Make exploration productive",
+          "prompt": "Which kind of experience would be most useful right now?",
+          "type": "single",
+          "options": [
+            { "id": "R_EX_1A", "label": "Short-term project (hands-on)", "sets": { "versionOfPath.exploreMode": "project" } },
+            { "id": "R_EX_1B", "label": "Shadowing (observe a role)", "sets": { "versionOfPath.exploreMode": "shadow" } },
+            { "id": "R_EX_1C", "label": "Time-boxed assignment/rotation", "sets": { "versionOfPath.exploreMode": "temporaryAssignment" } },
+            { "id": "R_EX_1D", "label": "Cross-team collaboration", "sets": { "versionOfPath.exploreMode": "crossTeam" } }
+          ]
+        }
+      ],
+      "reset": [
+        {
+          "id": "R_RE_1",
+          "screenTitle": "Why reset?",
+          "prompt": "What’s driving the need to reset right now?",
+          "type": "single",
+          "options": [
+            { "id": "R_RE_1A", "label": "Burnout / overload", "sets": { "versionOfPath.resetDriver": "burnout" } },
+            { "id": "R_RE_1B", "label": "Skill gap (I need to build capability)", "sets": { "versionOfPath.resetDriver": "skillGap" } },
+            { "id": "R_RE_1C", "label": "Mismatch (role fit isn’t right)", "sets": { "versionOfPath.resetDriver": "mismatch" } },
+            { "id": "R_RE_1D", "label": "Life change / capacity shift", "sets": { "versionOfPath.resetDriver": "lifeChange" } }
+          ]
+        }
+      ]
     }
   },
+
   "focusStatement": {
     "builder": {
       "defaultTemplates": {
         "levelUp": "Right now, I’m aiming to Level Up by {levelUpDescriptor}, and I want to prove readiness through {experiment1}.",
         "thrive": "Right now, I’m focused on Thriving in Place by strengthening {thriveDescriptor} to increase impact in my current role.",
         "moveAcross": "Right now, I’m exploring a Move Across to gain {acrossDescriptor} and broaden my perspective.",
-        "expandView": "Right now, I’m Expanding My View to clarify what’s next.",
+        "expandView": "Right now, I’m Expanding My View through {exploreDescriptor} to clarify what’s next.",
         "reset": "Right now, I’m Resetting My Course to rebuild {resetDescriptor} and set myself up for a sustainable next step."
       },
       "descriptorMaps": {
-        "levelUp": { "byLevelUpType": {
-          "peopleLeader": "my people leadership (leading through others)",
-          "scopeOwner": "my scope and ownership of outcomes",
-          "visibilityInfluence": "my influence and visibility across stakeholders",
-          "subjectMatterExpert": "my expertise and impact as a subject matter expert"
-        } },
-        "thrive": { "byThriveFocus": {} },
-        "moveAcross": { "byAcrossPurpose": {} },
-        "expandView": { "byExploreMode": {} },
-        "reset": { "byResetDriver": {
-          "burnout": "my energy and sustainability",
-          "skillGap": "skills and confidence",
-          "mismatch": "fit and clarity",
-          "lifeChange": "capacity and priorities"
-        } }
+        "levelUp": {
+          "byLevelUpType": {
+            "peopleLeader": "my people leadership (leading through others)",
+            "scopeOwner": "my scope and ownership of outcomes",
+            "visibilityInfluence": "my influence and visibility across stakeholders",
+            "subjectMatterExpert": "my expertise and impact as a subject matter expert"
+          }
+        },
+        "thrive": {
+          "byThriveFocus": {
+            "complexity": "how I handle complex problems",
+            "ownership": "my ownership of outcomes",
+            "influence": "my stakeholder influence",
+            "mentoring": "how I mentor and develop others"
+          }
+        },
+        "moveAcross": {
+          "byAcrossPurpose": {
+            "newSkills": "new skills that expand my capability",
+            "broaderPerspective": "a broader view of how the business works",
+            "betterFit": "a role that better fits my strengths and work style",
+            "optionality": "more options for future roles and growth"
+          }
+        },
+        "expandView": {
+          "byExploreMode": {
+            "project": "a short-term project with clear outcomes",
+            "shadow": "shadowing to understand the day-to-day reality",
+            "temporaryAssignment": "a time-boxed assignment to pressure-test fit",
+            "crossTeam": "cross-team collaboration that exposes me to new workflows"
+          }
+        },
+        "reset": {
+          "byResetDriver": {
+            "burnout": "my energy and sustainability",
+            "skillGap": "skills and confidence in key areas",
+            "mismatch": "fit and clarity on the right direction",
+            "lifeChange": "capacity and priorities for this season"
+          }
+        }
       }
     }
   },
+
   "experiments": {
     "library": [
       { "id": "E_LU_1", "path": "levelUp", "label": "Lead a cross-functional initiative with clear outcomes", "timeframeDays": 60 },
-      { "id": "E_LU_2", "path": "levelUp", "label": "Own a decision forum or weekly review", "timeframeDays": 45 },
-      { "id": "E_TH_1", "path": "thrive", "label": "Improve the hardest recurring problem in your role measurably", "timeframeDays": 60 },
-      { "id": "E_MA_1", "path": "moveAcross", "label": "Shadow a target role for 2–3 sessions and document learnings", "timeframeDays": 30 },
-      { "id": "E_EX_1", "path": "expandView", "label": "Take a short-term project that exposes you to a new team", "timeframeDays": 45 },
-      { "id": "E_RE_1", "path": "reset", "label": "Build a 4-week learning plan with manager support", "timeframeDays": 28 }
+      { "id": "E_LU_2", "path": "levelUp", "label": "Own a decision forum or weekly review (agenda, decisions, follow-through)", "timeframeDays": 45 },
+      { "id": "E_LU_3", "path": "levelUp", "label": "Mentor or coach a colleague for 6 weeks with a clear goal and feedback loop", "timeframeDays": 42 },
+
+      { "id": "E_TH_1", "path": "thrive", "label": "Take on the hardest recurring problem in your role and improve it measurably", "timeframeDays": 60 },
+      { "id": "E_TH_2", "path": "thrive", "label": "Create a playbook/checklist that improves quality or cycle time", "timeframeDays": 45 },
+
+      { "id": "E_MA_1", "path": "moveAcross", "label": "Shadow a target role for 2–3 sessions and document what surprised you", "timeframeDays": 30 },
+      { "id": "E_MA_2", "path": "moveAcross", "label": "Join a cross-team working group for 6–8 weeks to build context and relationships", "timeframeDays": 56 },
+
+      { "id": "E_EX_1", "path": "expandView", "label": "Take a short-term project that exposes you to a new team or workflow", "timeframeDays": 45 },
+      { "id": "E_EX_2", "path": "expandView", "label": "Do two mini-sprints in different areas (2 weeks each) to compare fit", "timeframeDays": 28 },
+
+      { "id": "E_RE_1", "path": "reset", "label": "Identify one skill gap and build a 4-week learning plan with manager support", "timeframeDays": 28 },
+      { "id": "E_RE_2", "path": "reset", "label": "Reset workload rhythm: define boundaries and priorities with your People Leader", "timeframeDays": 21 }
     ],
     "selectionRules": {
       "defaultPickCount": 2,
       "maxPickCount": 3,
       "suggestionsByPath": {
-        "levelUp": ["E_LU_1", "E_LU_2"],
-        "thrive": ["E_TH_1"],
-        "moveAcross": ["E_MA_1"],
-        "expandView": ["E_EX_1"],
-        "reset": ["E_RE_1"]
+        "levelUp": ["E_LU_1", "E_LU_2", "E_LU_3"],
+        "thrive": ["E_TH_1", "E_TH_2"],
+        "moveAcross": ["E_MA_1", "E_MA_2"],
+        "expandView": ["E_EX_1", "E_EX_2"],
+        "reset": ["E_RE_1", "E_RE_2"]
       }
     }
   },
+
   "summaryLogic": {
     "whyEvidence": {
       "maxBullets": 3,
@@ -131,6 +340,7 @@
         "recalibration": "You’re signaling a need to rebuild capacity, clarity, or skills before accelerating."
       }
     },
+
     "intentTranslationRules": [
       {
         "when": { "primaryPath": "levelUp", "versionOfPath.levelUpType": "peopleLeader" },
@@ -149,26 +359,198 @@
           ],
           "checkpointDays": 60,
           "watchOuts": [
-            "Don’t equate ‘level up’ with title alone—ensure scope and leadership reps exist first."
+            "Don’t equate ‘level up’ with title alone—ensure scope and leadership reps exist first.",
+            "Avoid over-indexing on being the hero/expert instead of developing others."
+          ]
+        }
+      },
+      {
+        "when": { "primaryPath": "levelUp", "versionOfPath.levelUpType": "scopeOwner" },
+        "then": {
+          "intentTranslation": "Wants expanded ownership and outcomes—more scope, stronger decision rights, bigger bets.",
+          "coachingFocus": [
+            "Assign an initiative with clear outcomes and stakeholder visibility.",
+            "Give decision reps: define decision rights, tradeoffs, and post-decision learning."
+          ],
+          "leaderAsk": "Give me an initiative with outcomes + decision rights (and a clear definition of success).",
+          "pressureTestQuestion": "If you own the outcome, what decisions are you willing to make without perfect information—and what data will you use anyway?",
+          "successLooksLike": [
+            "They define outcomes, tradeoffs, and decision points up front",
+            "They communicate decisions clearly and keep stakeholders aligned",
+            "They deliver measurable progress against the defined outcome"
+          ],
+          "checkpointDays": 60,
+          "watchOuts": [
+            "Avoid stretching without authority—match accountability with decision rights.",
+            "If ambiguity tolerance is low, add guardrails (checkpoints + clear scope)."
+          ]
+        }
+      },
+      {
+        "when": { "primaryPath": "levelUp", "versionOfPath.levelUpType": "visibilityInfluence" },
+        "then": {
+          "intentTranslation": "Wants to expand influence and visibility—representing work, shaping direction, aligning stakeholders.",
+          "coachingFocus": [
+            "Put them in forums where they can represent work and influence decisions.",
+            "Coach exec-ready communication: clarity, tradeoffs, recommendation."
+          ],
+          "leaderAsk": "Give me a forum where I can represent the work and influence outcomes—and coach me on how to show up well.",
+          "pressureTestQuestion": "If you had to earn influence through substance (not visibility), what results or expertise would you anchor it on?",
+          "successLooksLike": [
+            "They show up with clear recommendations and tradeoffs (not just updates)",
+            "Stakeholders leave aligned on decisions and next steps",
+            "Their influence is grounded in credibility and results"
+          ],
+          "checkpointDays": 45,
+          "watchOuts": [
+            "Visibility without substance can backfire—anchor influence in results and credibility.",
+            "Make sure visibility isn’t being used to avoid accountability."
+          ]
+        }
+      },
+      {
+        "when": { "primaryPath": "levelUp", "versionOfPath.levelUpType": "subjectMatterExpert" },
+        "then": {
+          "intentTranslation": "Wants to Level Up as a subject matter expert—deeper expertise with broader business impact.",
+          "coachingFocus": [
+            "Define what SME at the next level looks like: problems owned, influence, outcomes.",
+            "Create opportunities to standardize practices and teach across teams."
+          ],
+          "leaderAsk": "Help me define the next-level SME scope (what I own, who I influence, what outcomes I’m responsible for).",
+          "pressureTestQuestion": "What’s the business outcome your expertise should move—and how will we measure that impact?",
+          "successLooksLike": [
+            "They own a clear problem space with measurable business impact",
+            "They scale expertise through playbooks/standards (not becoming a bottleneck)",
+            "Other teams reuse their knowledge and improve outcomes"
+          ],
+          "checkpointDays": 60,
+          "watchOuts": [
+            "Avoid becoming a bottleneck—build systems and knowledge-sharing.",
+            "Keep expertise connected to business outcomes, not just technical depth."
+          ]
+        }
+      },
+
+      {
+        "when": { "primaryPath": "thrive" },
+        "then": {
+          "intentTranslation": "Wants intentional depth and impact in the current role—growth without a role change.",
+          "coachingFocus": [
+            "Define a meaningful in-role stretch (complexity, ownership, influence, or mentoring).",
+            "Align on visible outcomes so progress is recognized."
+          ],
+          "leaderAsk": "Help me define a visible stretch inside my current role (so growth is real, not just ‘more of the same’).",
+          "pressureTestQuestion": "If you stay in role, what new challenge would make this year feel like undeniable progress—not comfort?",
+          "successLooksLike": [
+            "They take on a defined stretch with measurable outcomes",
+            "Their work becomes more visible and reusable (playbook, process improvement, mentoring)",
+            "They can articulate what got stronger and why it matters"
+          ],
+          "checkpointDays": 60,
+          "watchOuts": [
+            "Avoid comfort masquerading as growth—make the stretch explicit.",
+            "Ensure growth stays visible and transferable."
+          ]
+        }
+      },
+
+      {
+        "when": { "primaryPath": "moveAcross" },
+        "then": {
+          "intentTranslation": "Wants a lateral move with purpose—broadening capability, perspective, or fit.",
+          "coachingFocus": [
+            "Clarify the purpose: what they want to gain and what success looks like after the move.",
+            "Use low-risk tests first (shadowing, short projects, working groups)."
+          ],
+          "leaderAsk": "Help me test-fit a lateral move through one structured exposure before we commit.",
+          "pressureTestQuestion": "Are you moving toward a specific capability you want—or moving away from something in the current role?",
+          "successLooksLike": [
+            "They can name what they want to gain in one sentence",
+            "They complete one exposure and capture learnings + next decision",
+            "They narrow to 1–2 target roles/teams worth exploring next"
+          ],
+          "checkpointDays": 45,
+          "watchOuts": [
+            "Avoid lateral drift—anchor the move in a clear purpose and learning plan.",
+            "Confirm the move isn’t avoidance of a solvable issue in the current role."
+          ]
+        }
+      },
+
+      {
+        "when": { "primaryPath": "expandView" },
+        "then": {
+          "intentTranslation": "Wants exploration with structure—pressure-testing fit before committing to a direction.",
+          "coachingFocus": [
+            "Time-box exploration with one clear question and 1–2 experiences that create signal.",
+            "Set a decision checkpoint: what will we decide based on what we learn?"
+          ],
+          "leaderAsk": "Help me structure exploration so it produces a decision—not just curiosity.",
+          "pressureTestQuestion": "What is the one question this exploration must answer for you by the checkpoint date?",
+          "successLooksLike": [
+            "They run a time-boxed exploration with a clear question",
+            "They can say what they learned and what it changes",
+            "They narrow to 1–2 plausible next directions"
+          ],
+          "checkpointDays": 45,
+          "watchOuts": [
+            "Exploration can become indefinite—set a checkpoint and a decision outcome.",
+            "Avoid ‘busy exploration’ that doesn’t change understanding or options."
+          ]
+        }
+      },
+
+      {
+        "when": { "primaryPath": "reset" },
+        "then": {
+          "intentTranslation": "Needs a reset to rebuild sustainability, clarity, or skills before the next move.",
+          "coachingFocus": [
+            "Normalize the reset; co-create a plan (workload, learning, boundaries, timeline).",
+            "Define what ‘ready again’ looks like and how you’ll measure it."
+          ],
+          "leaderAsk": "Help me reset with dignity: a clear plan so I can re-accelerate sustainably.",
+          "pressureTestQuestion": "What would make this reset successful in a way we can both observe and measure?",
+          "successLooksLike": [
+            "They regain sustainable pace (no chronic overload patterns)",
+            "They complete agreed reset plan steps (learning/workload/rhythm)",
+            "They can articulate the next direction with more clarity than today"
+          ],
+          "checkpointDays": 60,
+          "watchOuts": [
+            "Don’t confuse reset with disengagement—look for intentional rebuilding steps.",
+            "Avoid returning to the same overload pattern without structural changes."
           ]
         }
       }
     ],
+
     "fallbackIntentTranslation": {
       "intentTranslation": "Wants progress and clarity; answers show mixed signals, so the focus is on structured next steps that create evidence.",
       "coachingFocus": [
-        "Treat this as a 30–60 day discovery sprint with a clear learning question."
+        "Treat this as a 30–60 day discovery sprint with a clear learning question.",
+        "Agree on one experiment that creates signal (scope, depth, or breadth)."
       ],
       "leaderAsk": "Help me pick one experiment that creates clear evidence about what direction fits.",
       "pressureTestQuestion": "If we had to choose one experiment that would teach us the most in 30–60 days, what would it be—and what would we learn from it?",
       "successLooksLike": [
-        "They complete one experiment and capture learnings"
+        "They complete one experiment and capture learnings",
+        "They can say what they want more of (and less of) with more confidence",
+        "They narrow the next conversation to 1–2 real options"
       ],
       "checkpointDays": 45,
-      "watchOuts": ["Don’t force certainty too early—create evidence first."]
+      "watchOuts": [
+        "Don’t force certainty too early—create evidence first."
+      ]
     }
   },
+
   "templates": {
-    "uiStrings": { "confidenceLabels": { "strong": "Strong signal", "emerging": "Emerging signal", "early": "Early signal" } }
+    "uiStrings": {
+      "confidenceLabels": {
+        "strong": "Strong signal",
+        "emerging": "Emerging signal",
+        "early": "Early signal"
+      }
+    }
   }
 }
